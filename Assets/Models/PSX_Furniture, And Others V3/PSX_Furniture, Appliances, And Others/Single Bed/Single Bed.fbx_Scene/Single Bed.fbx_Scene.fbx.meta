@@ -3,7 +3,17 @@ guid: fce3d33a0cb86cd4c9b28bed7b693539
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CheapWood
+    second: {fileID: 2100000, guid: 8d9cf552a6692fe4da8af756c1f40b7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MessyBed
+    second: {fileID: 2100000, guid: a9cb32930a7cfed46bc547884e035b51, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
