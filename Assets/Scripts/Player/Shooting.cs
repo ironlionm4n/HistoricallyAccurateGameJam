@@ -23,7 +23,6 @@ namespace Player
         private static readonly int IsAiming = Animator.StringToHash("IsAiming");
         public static event Action GunWasFired;
 
-
         private void Start()
         {
             _currentRounds = gunScriptableObject.MagazineSize;
