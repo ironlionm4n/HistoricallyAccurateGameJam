@@ -6,6 +6,7 @@ namespace Guns
 {
     public class ShootingHelper : MonoBehaviour
     {
+        [SerializeField] private AudioSource reloadAudioSource;
         private Shooting _shooting;
         
         public static bool _inAimState;
@@ -32,6 +33,11 @@ namespace Guns
         public void ExitAimState()
         {
             _inAimState = false;
+        }
+
+        public void PlayReloadAudioSourceAnimationEvent()
+        {
+            reloadAudioSource.PlayOneShot(reloadAudioSource.clip);
         }
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Enemy.States
-{ 
+{
     public class ShootingState : IState
     {
         private Animator _animator;
@@ -14,8 +14,10 @@ namespace Enemy.States
         private float _currentShotTime;
         private LayerMask _playerMask;
         private float _weaponDamage;
-        
-        public ShootingState(GameObject enemyGameObject, GameObject playerGameObject, float detectionDistance, Transform shootingTransform, LayerMask playerMask, float weaponDamage)
+        private AudioSource _gunShotAudioSource;
+
+        public ShootingState(GameObject enemyGameObject, GameObject playerGameObject, float detectionDistance,
+            Transform shootingTransform, LayerMask playerMask, float weaponDamage, AudioSource gunShotAudioSource)
         {
             _enemyGameObject = enemyGameObject;
             _playerGameObject = playerGameObject;
@@ -23,8 +25,9 @@ namespace Enemy.States
             _shootingPosition = shootingTransform;
             _playerMask = playerMask;
             _weaponDamage = weaponDamage;
+            _gunShotAudioSource = gunShotAudioSource;
         }
-        
+
         public void Enter()
         {
             _currentShotTime = 0f;
@@ -39,21 +42,19 @@ namespace Enemy.States
             if (_currentShotTime <= 0)
             {
                 _currentShotTime = _timeBetweenShots;
-                if (Physics.Raycast(_shootingPosition.position, _shootingPosition.forward,out var raycastHit, Mathf.Infinity, _playerMask))
+                _gunShotAudioSource.PlayOneShot(_gunShotAudioSource.clip);
+                if (Physics.Raycast(_shootingPosition.position, _shootingPosition.forward, out var raycastHit,
+                        Mathf.Infinity, _playerMask))
                 {
                     Debug.Log(raycastHit.transform.name);
                     var playerHealth = raycastHit.collider.GetComponent<PlayerHealth>();
-                    if (playerHealth)
-                    {
-                        playerHealth.TakeDamage(_weaponDamage);
-                    }
+                    if (playerHealth) playerHealth.TakeDamage(_weaponDamage);
                 }
             }
         }
 
         public void Exit()
         {
-            
         }
 
         public bool HasLostPlayer()
