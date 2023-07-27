@@ -14,6 +14,7 @@ namespace Player
         [SerializeField] private ParticleSystem shootParticles;
         [SerializeField] private Animator gunAnimator;
         [SerializeField] private GunScriptableObjects gunScriptableObject;
+        [SerializeField] private AudioSource gunShotAudioSource;
         public GunScriptableObjects CurrentGunScriptableObject => gunScriptableObject;
 
         private float _nextTimeToFire = 0f;
@@ -52,6 +53,7 @@ namespace Player
         {
             _currentRounds--;
             GunWasFired?.Invoke();
+            gunShotAudioSource.PlayOneShot(gunShotAudioSource.clip);
             _nextTimeToFire = Time.time + 1f / gunScriptableObject.FireRate;
             shootParticles.Play();
             if (!ShootingHelper._inAimState)

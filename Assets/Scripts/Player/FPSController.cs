@@ -1,3 +1,4 @@
+using Player.AudioManagers;
 using UnityEngine;
 
 namespace Player
@@ -12,6 +13,8 @@ namespace Player
         [SerializeField] private float sprintSpeed;
         [SerializeField] private float crouchSpeed;
 
+        [SerializeField] private PlayerFootStepsAudioManager playerFootStepsAudioManager;
+
         private const float _crouchingOffset = .468f;
         private Rigidbody _rigidbody;
         private Vector3 _moveAmount;
@@ -19,6 +22,10 @@ namespace Player
         private Vector3 _smoothMoveVelocity;
         private float _currentMoveSpeed;
         private static bool _isCrouching;
+        private float _walkFootstepTimer = .75f;
+        private float _sprintFootstepTimer = .45f;
+        private bool _isWalking;
+        private bool _isSprinting;
 
         private void Start()
         {
@@ -32,6 +39,25 @@ namespace Player
             HandleSprinting();
             HandleCrouching();
             HandleMovement();
+            if (_isWalking && !_isSprinting)
+            {
+                _walkFootstepTimer -= Time.deltaTime;
+                if (_walkFootstepTimer <= 0)
+                {
+                    _walkFootstepTimer = .75f;
+                    playerFootStepsAudioManager.PlayFootStepOneShot();
+                }
+            }
+
+            if (_isSprinting)
+            {
+                _sprintFootstepTimer -= Time.deltaTime;
+                if (_sprintFootstepTimer <= 0)
+                {
+                    _sprintFootstepTimer = .45f;
+                    playerFootStepsAudioManager.PlayFootStepOneShot();
+                }
+            }
         }
 
         private void HandleMovement()
@@ -48,6 +74,7 @@ namespace Player
             var moveX = Input.GetAxis("Horizontal");
             var moveZ = Input.GetAxis("Vertical");
             _moveAmount = (cameraTransform.forward * moveZ + cameraTransform.right * moveX).normalized * _currentMoveSpeed;
+            _isWalking = _moveAmount != Vector3.zero;
             _moveAmount.y = 0f;
         }
 
@@ -58,10 +85,13 @@ namespace Player
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 _currentMoveSpeed = sprintSpeed;
+                _isSprinting = true;
+                _isWalking = false;
             }
             else
             {
                 _currentMoveSpeed = moveSpeed;
+                _isSprinting = false;
             }
         }
 
