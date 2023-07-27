@@ -16,6 +16,8 @@ namespace Enemy
         [SerializeField] private Transform shootingTransform;
         [SerializeField] private LayerMask playerMask;
         [SerializeField] private float weaponDamage;
+        [SerializeField] private AudioSource gunShotAudioSource;
+        [SerializeField] private AudioSource deathAudioSource;
 
         private IState _currentState;
         private int _currentWaypointIndex;
@@ -40,7 +42,7 @@ namespace Enemy
                 var travelingState = (TravelingState)_currentState;
                 if (travelingState.HasFoundPlayer())
                     ChangeState(new ShootingState(gameObject, playerGameObject, detectionDistance, shootingTransform,
-                        playerMask, weaponDamage));
+                        playerMask, weaponDamage, gunShotAudioSource));
                 else if (travelingState.HasReachedDestination()) ChangeState(new IdleState(idleTime));
             }
 
@@ -69,11 +71,16 @@ namespace Enemy
             return targetWaypoint;
         }
 
-        private void ChangeState(IState newState)
+        public void ChangeState(IState newState)
         {
             _currentState?.Exit();
             _currentState = newState;
             _currentState.Enter();
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }
