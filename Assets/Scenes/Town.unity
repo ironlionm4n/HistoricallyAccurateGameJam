@@ -5384,7 +5384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1027536065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5738,10 +5738,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  damage: 25
   shootParticles: {fileID: 75323811}
-  fireRate: 2
   gunAnimator: {fileID: 1680173532}
+  gunScriptableObject: {fileID: 0}
 --- !u!114 &1856977796
 MonoBehaviour:
   m_ObjectHideFlags: 0
