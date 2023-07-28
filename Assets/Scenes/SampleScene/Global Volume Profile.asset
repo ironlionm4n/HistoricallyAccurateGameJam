@@ -15,10 +15,10 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   isFrameLimitEnabled:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   frameLimit:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 24
     min: 1
   aspectMode:
@@ -31,7 +31,7 @@ MonoBehaviour:
     max: 4096
   targetRasterizationResolutionHeight:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 136
     min: 1
     max: 4096
   isDepthBufferEnabled:
@@ -59,33 +59,33 @@ MonoBehaviour:
   m_AdvancedMode: 0
   skyMode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   framebufferDitherWeight:
     m_OverrideState: 1
-    m_Value: 0.723
+    m_Value: 0.434
     min: 0
     max: 1
   skyRotation:
     m_OverrideState: 1
-    m_Value: {x: -120, y: 0, z: 0}
+    m_Value: {x: 0, y: 0, z: 0}
   textureFilterMode:
     m_OverrideState: 0
     m_Value: 0
   skyboxTexture:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: 213dac2feb9c37340a01731cc3436e94, type: 3}
+    m_Value: {fileID: 8900000, guid: a615f6de0224d55408b4e74da3b0bac0, type: 3}
   tiledLayersSkyHeightScale:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.25
     min: 0
   tiledLayersSkyHorizonOffset:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -0.26
     min: -1
     max: 1
   tiledLayersSkyColorLayer0:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
@@ -99,14 +99,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   tiledLayersSkyScrollScaleLayer0:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {x: 0.125, y: 0.125}
   tiledLayersSkyScrollRotationLayer0:
     m_OverrideState: 0
     m_Value: 0
   tiledLayersSkyColorLayer1:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
@@ -158,7 +158,7 @@ MonoBehaviour:
     m_Value: 1
   scanlineSharpness:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 1
     min: 0
     max: 1
   imageSharpness:
@@ -208,7 +208,7 @@ MonoBehaviour:
     max: 1
   vignette:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.143
     min: 0
     max: 1
 --- !u!114 &11400000
