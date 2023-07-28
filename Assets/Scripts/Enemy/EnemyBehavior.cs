@@ -17,8 +17,8 @@ namespace Enemy
         [SerializeField] private LayerMask playerMask;
         [SerializeField] private float weaponDamage;
         [SerializeField] private AudioSource gunShotAudioSource;
-        [SerializeField] private AudioSource deathAudioSource;
-
+        [SerializeField] private Animator animator;
+        
         private IState _currentState;
         private int _currentWaypointIndex;
 
@@ -32,6 +32,7 @@ namespace Enemy
         private void Update()
         {
             _currentState.Execute();
+    
             StateTransitionChecking();
         }
 
@@ -42,7 +43,7 @@ namespace Enemy
                 var travelingState = (TravelingState)_currentState;
                 if (travelingState.HasFoundPlayer())
                     ChangeState(new ShootingState(gameObject, playerGameObject, detectionDistance, shootingTransform,
-                        playerMask, weaponDamage, gunShotAudioSource));
+                        playerMask, weaponDamage, gunShotAudioSource, animator));
                 else if (travelingState.HasReachedDestination()) ChangeState(new IdleState(idleTime));
             }
 
@@ -52,7 +53,7 @@ namespace Enemy
                 if (idleState.IsDoneIdling())
                     if (waypoints.Count > 0)
                         ChangeState(new TravelingState(gameObject, GetTargetWaypoint(), moveSpeed, playerGameObject,
-                            detectionDistance));
+                            detectionDistance, animator));
             }
 
             if (_currentState is ShootingState)

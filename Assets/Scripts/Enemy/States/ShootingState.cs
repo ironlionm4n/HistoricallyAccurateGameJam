@@ -5,6 +5,7 @@ namespace Enemy.States
 {
     public class ShootingState : IState
     {
+        public string name = "Shooting";
         private Animator _animator;
         private GameObject _enemyGameObject;
         private GameObject _playerGameObject;
@@ -15,9 +16,11 @@ namespace Enemy.States
         private LayerMask _playerMask;
         private float _weaponDamage;
         private AudioSource _gunShotAudioSource;
+        private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+        private static readonly int IsFiring = Animator.StringToHash("IsFiring");
 
         public ShootingState(GameObject enemyGameObject, GameObject playerGameObject, float detectionDistance,
-            Transform shootingTransform, LayerMask playerMask, float weaponDamage, AudioSource gunShotAudioSource)
+            Transform shootingTransform, LayerMask playerMask, float weaponDamage, AudioSource gunShotAudioSource, Animator animator)
         {
             _enemyGameObject = enemyGameObject;
             _playerGameObject = playerGameObject;
@@ -26,19 +29,23 @@ namespace Enemy.States
             _playerMask = playerMask;
             _weaponDamage = weaponDamage;
             _gunShotAudioSource = gunShotAudioSource;
+            _animator = animator;
         }
 
         public void Enter()
         {
             _currentShotTime = 0f;
+            _animator.SetBool(IsWalking, false);
+            _animator.SetBool(IsFiring, true);
         }
 
         public void Execute()
         {
+            Debug.Log(name);
             _currentShotTime -= Time.deltaTime;
             var playerPosition = _playerGameObject.transform.position;
             _enemyGameObject.transform.LookAt(playerPosition);
-            Debug.DrawRay(_shootingPosition.position, _shootingPosition.forward, Color.red);
+            Debug.DrawRay(_shootingPosition.position, _shootingPosition.forward * 10f, Color.red);
             if (_currentShotTime <= 0)
             {
                 _currentShotTime = _timeBetweenShots;
@@ -55,6 +62,7 @@ namespace Enemy.States
 
         public void Exit()
         {
+            _animator.SetBool(IsFiring, false);
         }
 
         public bool HasLostPlayer()
