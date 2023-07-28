@@ -7,6 +7,7 @@ namespace Enemy.States
     
     public class IdleState : IState
     {
+        public string name = "Idle";
         private readonly float _idleTime;
         private float _elapsedTime;
 
@@ -22,6 +23,7 @@ namespace Enemy.States
 
         public void Execute()
         {
+            Debug.Log(name);
             _elapsedTime += Time.deltaTime;
         }
 

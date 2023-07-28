@@ -4,6 +4,7 @@ namespace Enemy.States
 {
     public class DeathState : IState
     {
+        public string name = "Death";
         private float _deathTimer = 1f;
         private readonly EnemyBehavior _enemyBehavior;
         private AudioSource _deathAudioSource;
@@ -21,6 +22,7 @@ namespace Enemy.States
 
         public void Execute()
         {
+            Debug.Log(name);
             _deathTimer -= Time.deltaTime;
             if (_deathTimer <= 0)
             {
