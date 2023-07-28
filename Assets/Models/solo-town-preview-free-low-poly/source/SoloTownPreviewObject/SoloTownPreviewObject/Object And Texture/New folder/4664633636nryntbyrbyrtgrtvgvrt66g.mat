@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 4664633636nryntbyrbyrtgrtvgvrt66g
   m_Shader: {fileID: 4800000, guid: 055eab4e84dc70a47ae75b3125a22de6, type: 3}
-  m_ShaderKeywords: _BRDF_MODE_LAMBERT _FOG_ON _LIGHTING_BAKED_ON _LIGHTING_DYNAMIC_ON
-    _SHADING_EVALUATION_MODE_PER_VERTEX _TEXTURE_FILTER_MODE_TEXTURE_IMPORT_SETTINGS
+  m_ShaderKeywords: _BRDF_MODE_LAMBERT _LIGHTING_BAKED_ON _LIGHTING_DYNAMIC_ON _SHADING_EVALUATION_MODE_PER_VERTEX
+    _TEXTURE_FILTER_MODE_TEXTURE_IMPORT_SETTINGS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -85,7 +85,7 @@ Material:
     - _DrawDistanceOverrideMode: 0
     - _DstBlend: 0
     - _EmissionBakedMultiplier: 1
-    - _FogWeight: 1
+    - _FogWeight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
