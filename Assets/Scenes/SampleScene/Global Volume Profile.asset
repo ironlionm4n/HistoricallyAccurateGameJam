@@ -59,7 +59,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   skyMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
   framebufferDitherWeight:
     m_OverrideState: 1
     m_Value: 0.434
